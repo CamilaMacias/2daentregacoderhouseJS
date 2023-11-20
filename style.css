@@ -1,0 +1,37 @@
+
+
+
+
+.jumbotron jumbotron-fluid{
+    color: lightcyan;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    margin-top: 200px;
+
+    
+}
+
+.carousel-inner{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.carousel-inner image{
+    size: 50%;
+}
+
+
+.navbar-nav{
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-item{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
