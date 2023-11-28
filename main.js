@@ -1,3 +1,9 @@
+const zapatilla = [
+
+  {nombre: "Adidas Superstar", precio: 100, stock: 35},
+  {nombre: "Adidas Retropy", precio: 145, stock: 22},
+  {nombre: "Adidas Samba", precio: 180, stock: 15}
+]
 
 alert('Bienvenido a Adidas! ¿Qué te gustaría ver?')
 
@@ -10,24 +16,30 @@ if (userInput !== null) {
 }
 
 if (userInputLower === 'zapatillas') {
-  const productoid = parseInt(prompt('Ingresá la zapatilla que querés agregar al carrito'));
-  agregarAlCarrito(productoid);
+  const modeloBuscado = prompt('Ingresá el modelo de zapatilla que querés agregar al carrito');
+  const zapatillaEncontrada = buscarZapatillaPorModelo(modeloBuscado);
+
+  if (zapatillaEncontrada) {
+    agregarAlCarrito(zapatillaEncontrada);
+  } else {
+    console.log('Zapatilla no encontrada');
+  }
 } else if (userInputLower === 'remeras' || userInputLower === 'shorts') {
   console.log('Esta página web está dedicada solamente a zapatillas.');
 } else {
   console.log('Opción no válida.');
 }
 
+//buscar zapatilla por modelo
+function buscarZapatillaPorModelo(modelo) {
+  return zapatilla.find((z) => z.nombre.toLowerCase() === modelo.toLowerCase());
+}
+
   const carrito = []
 
-const zapatilla = [
 
-  {nombre: "Adidas Superstar", precio: 100, stock: 35},
-  {nombre: "Adidas Retropy", precio: 145, stock: 22},
-  {nombre: "Adidas Samba", precio: 180, stock: 15}
   
   
-  ]
   function mostrarCatalogo() {
     console.log("Catálogo de zapatillas:");
     zapatilla.forEach((zapatilla, i) => {
@@ -35,9 +47,24 @@ const zapatilla = [
     });
   }
 
-  function agregarAlCarrito(zapatillaIndex, cantidad) {
-    const zapatillaSeleccionada = zapatilla[zapatillaIndex];
+  function buscarZapatillaPorModelo(modelo) {
+    return zapatilla.find((z) => z.nombre.toLowerCase() === modelo.toLowerCase());
+  }
   
+  
+  carrito = obtenerCarritoDesdeLocalStorage();
+
+function obtenerCarritoDesdeLocalStorage() {
+  return JSON.parse(localStorage.getItem('carrito')) || [];
+}
+
+function guardarCarritoEnLocalStorage() {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+  
+
+  function agregarAlCarrito(zapatillaSeleccionada, cantidad) {
     if (zapatillaSeleccionada && cantidad > 0 && cantidad <= zapatillaSeleccionada.stock) {
       const itemEnCarrito = carrito.find((item) => item.zapatilla.nombre === zapatillaSeleccionada.nombre);
   
@@ -54,10 +81,27 @@ const zapatilla = [
     }
   }
   
-
-
-
   
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+  
+    //botón "Carrito"
+    let carritoBtn = document.getElementById('carritoBtn');
+  
+    // Agrega un evento de clic al botón "Carrito"
+    carritoBtn.addEventListener('click', function () {
+      mostrarMensajeCarrito();
+    });
+  
+    // Función para cuando se clickea el botón "Carrito"
+    function mostrarMensajeCarrito() {
+      alert('¡Agregar producto!');
+    }
+  });
+  
+  
+
 
   function mostrarCarrito() {
     console.log("Carrito");
